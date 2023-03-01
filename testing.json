@@ -1,0 +1,36 @@
+[
+  {"id":456,
+    "name":"Egor",
+    "coordinates":{
+        "x":20,
+        "y":7},
+    "creationDate":"2022-01-28",
+    "from":{
+        "x":20,
+        "y":20,
+        "z":5,
+        "name":"abc"},
+    "to":{
+        "x":20,
+        "y":20,
+        "z":55,
+        "name":"aabbc"},
+    "distance":30.0},
+  {"id":46,
+    "name":"Egor",
+    "coordinates":{
+        "x":20,
+        "y":7},
+    "creationDate":"2022-01-28",
+    "from":{
+        "x":20,
+        "y":20,
+        "z":5,
+        "name":"abc"},
+    "to":{
+        "x":20,
+        "y":20,
+        "z":55,
+        "name":"aabbc"},
+    "distance":30.0}
+]
