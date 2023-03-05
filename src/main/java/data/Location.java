@@ -6,6 +6,12 @@ public class Location {
     private int z;
     private String name; //Длина строки не должна быть больше 457, Поле не может быть null
 
+    public Location(Long x, Double y, int z, String name){
+        this.x =x;
+        this.y = y;
+        this.z = z;
+        this.name = name;
+    }
     public boolean validate(){
         return (x!=null && y!=null && name!=null && name.length()<=457);
     }

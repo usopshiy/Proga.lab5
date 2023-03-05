@@ -9,8 +9,8 @@ import java.util.Date;
 
 import exceptions.InvalidDateFormatException;
 public class DateConverter {
-    private static DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-    private static  DateTimeFormatter localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+    private static final  DateTimeFormatter localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static String dateToString(Date date){
         return dateFormatter.format(date);

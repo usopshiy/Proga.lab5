@@ -1,5 +1,5 @@
 [
-  {"id":456,
+  {"id": "90612e3c-b810-11ed-afa1-0242ac120002",
     "name":"Egor",
     "coordinates":{
         "x":20,
@@ -16,7 +16,7 @@
         "z":55,
         "name":"aabbc"},
     "distance":30.0},
-  {"id":46,
+  {"id": "90613134-b810-11ed-afa1-0242ac120002",
     "name":"Egor",
     "coordinates":{
         "x":20,

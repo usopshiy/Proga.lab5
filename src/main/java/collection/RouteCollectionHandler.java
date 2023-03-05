@@ -7,20 +7,17 @@ import json.CollectionDeserializer;
 import json.DateDeserializer;
 import json.LocalDateDeserializer;
 
-import java.util.Date;
+import java.util.*;
 import java.lang.reflect.Type;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 
 public class RouteCollectionHandler {
     private LinkedHashSet<Route> collection;
-    private HashSet<Long> uniqueIds;
+    private HashSet<UUID> uniqueIds;
     private java.time.LocalDateTime initDate;
 
     public RouteCollectionHandler(){
         collection = new LinkedHashSet<Route>();
-        uniqueIds = new HashSet<Long>();
+        uniqueIds = new HashSet<UUID>();
         initDate = java.time.LocalDateTime.now();
     }
     public boolean deserializeCollection(String json){
@@ -43,5 +40,9 @@ public class RouteCollectionHandler {
         }
         return success;
 
+    }
+
+    public LinkedHashSet<Route> getCollection() {
+        return collection;
     }
 }
