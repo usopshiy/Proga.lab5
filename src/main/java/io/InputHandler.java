@@ -28,7 +28,7 @@ public abstract class InputHandler {
     }
 
     public Coordinates readCoordinates() throws InvalidDataException{
-        Float x = readCoordX();
+        Float x = readCordX();
         int y = readCordY();
         return new Coordinates(x, y);
     }
@@ -41,7 +41,7 @@ public abstract class InputHandler {
         return new Location(x, y, z, name);
     }
 
-    public Float readCoordX() throws InvalidDataException{
+    public Float readCordX() throws InvalidDataException{
         Float x;
         try{
             x = Float.parseFloat(scanner.nextLine().trim());}
@@ -129,6 +129,19 @@ public abstract class InputHandler {
         Location to = readLocation();
         Double distance = readDistance();
         Route route = new Route(name, cords, from, to, distance);
-        return null;
+        return route;
+    }
+
+    public CommandWrapper readCommand(){
+        String cmd = scanner.nextLine().trim();
+        if(cmd.contains(" ")){
+            String[] arr = cmd.split(" ");
+            cmd = arr[0];
+            String arg = arr[1];
+            return new CommandWrapper(cmd, arg);
+        }
+        else{
+            return new CommandWrapper(cmd);
+        }
     }
 }

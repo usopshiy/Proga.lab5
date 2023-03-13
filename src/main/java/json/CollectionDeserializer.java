@@ -45,7 +45,7 @@ public class CollectionDeserializer implements JsonDeserializer<LinkedHashSet<Ro
                 }
                 uniqueIds.add(routeId);
                 collection.add(route);
-            } catch (Exception e) { //Убери общий эксэпшон, чорт
+            } catch (JsonParseException e) {
                 damagedElements++;
             }
         }

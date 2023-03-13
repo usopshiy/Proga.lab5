@@ -1,5 +1,7 @@
 import collection.RouteCollectionHandler;
 import file.FileHandler;
+import io.UserInputHandler;
+
 import static utils.ConsoleColors.*;
 
 
@@ -24,5 +26,7 @@ public class Main {
             fileHandler.setPath(args[0].trim());
             collectionHandler.deserializeCollection(fileHandler.read());
         }
+        UserInputHandler userInputHandler = new UserInputHandler(collectionHandler, fileHandler);
+        userInputHandler.consoleMode();
     }
 }

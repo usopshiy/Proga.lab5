@@ -42,6 +42,18 @@ public class RouteCollectionHandler {
 
     }
 
+    public void clear(){
+        collection.clear();
+        uniqueIds.clear();
+    }
+
+    public void add(Route route){
+        uniqueIds.add(route.getId());
+        collection.add(route);
+        System.out.print("added element: ");
+        System.out.println(route.toString());
+    }
+
     public LinkedHashSet<Route> getCollection() {
         return collection;
     }
