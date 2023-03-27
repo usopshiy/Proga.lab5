@@ -2,12 +2,15 @@ import collection.RouteCollectionHandler;
 import file.FileHandler;
 import io.UserInputHandler;
 
+import java.io.PrintStream;
+import java.util.UUID;
+
 import static utils.ConsoleColors.*;
 
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         System.out.print("\t\t\t\t Lab5 v0.1\n");
     System.out.print(PURPLE_BOLD_BRIGHT+"""
               _____     ____    _    _   _______   ______    _____\s
@@ -19,9 +22,9 @@ public class Main {
             """+RESET);
         System.out.println("\t    by Egor Dashkevich aka usopshiy");
 
-
         FileHandler fileHandler = new FileHandler();
         RouteCollectionHandler collectionHandler = new RouteCollectionHandler();
+        System.setErr(new PrintStream("file.txt", "UTF-8"));
         if (args.length!=0){
             fileHandler.setPath(args[0].trim());
             collectionHandler.deserializeCollection(fileHandler.read());

@@ -2,10 +2,11 @@ package collection;
 
 import com.google.gson.*;
 import com.google.gson.reflect.*;
+import commands.ExceptionWrapper;
 import data.Route;
-import json.CollectionDeserializer;
-import json.DateDeserializer;
-import json.LocalDateDeserializer;
+import json.*;
+import utils.ConsoleColors;
+import utils.DateConverter;
 
 import java.util.*;
 import java.lang.reflect.Type;
@@ -36,10 +37,23 @@ public class RouteCollectionHandler {
             }
         } catch (JsonParseException e){
             success = false;
-            System.err.print("wrong json data");
+            ExceptionWrapper.outException(e.getMessage());
         }
         return success;
 
+    }
+
+    public String serializeCollection(){
+        if(collection == null || collection.isEmpty()){
+            return "";
+        }
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(java.time.LocalDate.class, new LocalDateSerializer())
+                .registerTypeAdapter(Date.class, new DateSerializer())
+                .setPrettyPrinting()
+                .create();
+        String json = gson.toJson(collection);
+        return json;
     }
 
     public void clear(){
@@ -54,6 +68,34 @@ public class RouteCollectionHandler {
         System.out.println(route.toString());
     }
 
+    public boolean checkID(UUID id){
+        for(Route route : collection){
+            if(route.getId().equals(id)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeByID(UUID id){
+        for(Route route : collection){
+            if(route.getId().equals(id)){
+                collection.remove(route);
+                uniqueIds.remove(id);
+                System.out.println("successfully removed route with id: "+ id);
+            }
+        }
+    }
+
+    public void updateByID(UUID id, Route route){
+        for(Route cRoute : collection){
+            if(cRoute.getId().equals(id)){
+                collection.remove(cRoute);
+                collection.add(route);
+                System.out.println("successfully updated route with id: " + id);
+            }
+        }
+    }
     public LinkedHashSet<Route> getCollection() {
         return collection;
     }

@@ -64,6 +64,6 @@ public class ConsoleInputHandler extends InputHandler {
 
     @Override
     public Route readRoute(){
-        return new Request<>("enter Route data:", super::readRoute).getRespond();
+        return new Request<>("enter Route data: \n", super::readRoute).getRespond();
     }
 }

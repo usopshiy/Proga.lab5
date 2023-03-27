@@ -1,5 +1,6 @@
 package io;
 
+import commands.ExceptionWrapper;
 import exceptions.InvalidDataException;
 
 public class Request<T> {
@@ -13,7 +14,7 @@ public class Request<T> {
                 break;
 
             }catch (InvalidDataException e){
-                System.err.println(e.getMessage());
+                ExceptionWrapper.outException(e.getMessage());
             }
         }
     }

@@ -21,6 +21,6 @@ public class Add implements  Command {
 
     @Override
     public void getDescription() {
-
+        System.out.println("add {element} - adds new route in collection");
     }
 }

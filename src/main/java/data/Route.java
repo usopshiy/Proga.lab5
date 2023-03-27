@@ -4,7 +4,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.UUID;
 
-public class Route {
+public class Route implements Comparable<Route>{
     private UUID id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -26,7 +26,9 @@ public class Route {
         return id;
     }
 
-
+    public void setId(UUID id){
+        this.id = id;
+    }
     public boolean validate(){
         return (coordinates!=null && coordinates.validate() && creationDate!=null && from!=null && from.validate() && to!=null && to.validate() && distance!=null && distance>1);
     }
@@ -42,5 +44,12 @@ public class Route {
                 ", to=" + to +
                 ", distance=" + distance +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Route route) {
+        if(this.distance > route.distance) return 1;
+        if(this.distance.equals(route.distance)) return 0;
+        else return  -1;
     }
 }

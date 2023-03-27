@@ -18,6 +18,6 @@ public class Exit implements Command{
 
     @Override
     public void getDescription() {
-
+        System.out.println("exit - exits program");
     }
 }
