@@ -1,17 +1,14 @@
 package commands;
 
 import collection.RouteCollectionHandler;
-import data.Route;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
 import file.FileHandler;
 
-import java.io.File;
-import java.util.Collection;
 
 public class Save implements Command{
-    private FileHandler fileHandler;
-    private RouteCollectionHandler collectionHandler;
+    private final FileHandler fileHandler;
+    private final RouteCollectionHandler collectionHandler;
 
     public Save(FileHandler fileHandler, RouteCollectionHandler collectionHandler) {
         this.fileHandler = fileHandler;
@@ -26,7 +23,7 @@ public class Save implements Command{
     }
 
     @Override
-    public void getDescription() {
+    public void outDescription() {
 
     }
 }

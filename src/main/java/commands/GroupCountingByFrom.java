@@ -4,19 +4,23 @@ import collection.RouteCollectionHandler;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
 
-public class Clear implements Command {
+public class GroupCountingByFrom implements Command{
     private final RouteCollectionHandler collectionHandler;
 
-    public  Clear(RouteCollectionHandler collectionHandler){
+    public GroupCountingByFrom(RouteCollectionHandler collectionHandler) {
         this.collectionHandler = collectionHandler;
-    }
-    @Override
-    public void execute(String arg) throws CommandException, InvalidDataException {
-        collectionHandler.clear();
     }
 
     @Override
-    public void outDescription(){
-        System.out.println("clear - removes all routes from collection");
+    public void execute(String arg) throws CommandException, InvalidDataException {
+        if (collectionHandler.getCollection().isEmpty()) {
+            throw new CommandException("collection is empty!");
+        }
+        collectionHandler.groupCountingByFrom();
+    }
+
+    @Override
+    public void outDescription() {
+
     }
 }

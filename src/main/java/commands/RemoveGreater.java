@@ -1,25 +1,27 @@
 package commands;
 
 import collection.RouteCollectionHandler;
+import data.Route;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
 import io.InputHandler;
 
-public class Add implements  Command {
-    private final RouteCollectionHandler collectionHandler;
+public class RemoveGreater implements Command {
     private final InputHandler inputHandler;
+    private final RouteCollectionHandler collectionHandler;
 
-    public Add(RouteCollectionHandler routeCollectionHandler, InputHandler inputHandler){
-        this.collectionHandler = routeCollectionHandler;
+    public RemoveGreater(InputHandler inputHandler, RouteCollectionHandler collectionHandler) {
         this.inputHandler = inputHandler;
+        this.collectionHandler = collectionHandler;
     }
     @Override
     public void execute(String arg) throws CommandException, InvalidDataException {
-        collectionHandler.add(inputHandler.readRoute());
+        Route route = inputHandler.readRoute();
+        collectionHandler.getCollection().removeIf(routech -> routech.compareTo(route) > 0);
     }
 
     @Override
     public void outDescription() {
-        System.out.println("add {element} - adds new route in collection");
+
     }
 }

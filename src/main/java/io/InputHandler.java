@@ -28,21 +28,21 @@ public abstract class InputHandler {
     }
 
     public Coordinates readCoordinates() throws InvalidDataException{
-        Float x = readCordX();
-        int y = readCordY();
+        float x = readCordX();
+        Integer y = readCordY();
         return new Coordinates(x, y);
     }
 
     public Location readLocation() throws InvalidDataException{
-        Long x = readLocX();
+        Integer x = readLocX();
         Double y = readLocY();
-        int z = readLocZ();
+        Long z = readLocZ();
         String name = readLocName();
         return new Location(x, y, z, name);
     }
 
-    public Float readCordX() throws InvalidDataException{
-        Float x;
+    public float readCordX() throws InvalidDataException{
+        float x;
         try{
             x = Float.parseFloat(scanner.nextLine().trim());}
         catch(NumberFormatException e){
@@ -54,8 +54,8 @@ public abstract class InputHandler {
         return x;
     }
 
-    public int readCordY() throws InvalidDataException{
-        int y;
+    public Integer readCordY() throws InvalidDataException{
+        Integer y;
         try{
             y = Integer.parseInt(scanner.nextLine().trim());
         }
@@ -68,10 +68,10 @@ public abstract class InputHandler {
         return y;
     }
 
-    public Long readLocX() throws InvalidDataException{
-        Long x;
+    public Integer readLocX() throws InvalidDataException{
+        Integer x;
         try{
-            x = Long.parseLong(scanner.nextLine().trim());
+            x = Integer.parseInt(scanner.nextLine().trim());
         }
         catch(NumberFormatException e){
             throw new InvalidDataException("invalid coordinate format");
@@ -90,10 +90,10 @@ public abstract class InputHandler {
         return y;
     }
 
-    public int readLocZ() throws InvalidDataException{
-        int z;
+    public Long readLocZ() throws InvalidDataException{
+        Long z;
         try{
-            z = Integer.parseInt(scanner.nextLine().trim());
+            z = Long.parseLong(scanner.nextLine().trim());
         }
         catch(NumberFormatException e){
             throw new InvalidDataException("invalid coordinate format");
@@ -110,15 +110,17 @@ public abstract class InputHandler {
     }
 
     public Double readDistance() throws InvalidDataException{
-        Double dist;
-        try{
-            dist = Double.parseDouble(scanner.nextLine().trim());
-        }
-        catch(NumberFormatException e){
-            throw new InvalidDataException("invalid coordinate format");
-        }
-        if (dist <= 1){
-            throw new InvalidDataException("distance must be greater than 1");
+        Double dist = null;
+        String arg = scanner.nextLine().trim();
+        if(!arg.equals("")) {
+            try {
+                dist = Double.parseDouble(arg);
+            } catch (NumberFormatException e) {
+                throw new InvalidDataException("invalid coordinate format");
+            }
+            if (dist <= 1) {
+                throw new InvalidDataException("distance must be greater than 1");
+            }
         }
         return dist;
     }

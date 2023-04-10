@@ -28,17 +28,17 @@ public class ConsoleInputHandler extends InputHandler {
     }
 
     @Override
-    public Float readCordX(){
+    public float readCordX(){
         return new Request<>("x coordinate:", super::readCordX).getRespond();
     }
 
     @Override
-    public int readCordY(){
+    public Integer readCordY(){
         return new Request<>("y coordinate:", super::readCordY).getRespond();
     }
 
     @Override
-    public  Long readLocX(){
+    public  Integer readLocX(){
         return new Request<>("x coordinate:", super::readLocX).getRespond();
     }
 
@@ -48,7 +48,7 @@ public class ConsoleInputHandler extends InputHandler {
     }
 
     @Override
-    public  int readLocZ(){
+    public  Long readLocZ(){
         return  new Request<>("z coordinate:", super::readLocZ).getRespond();
     }
 

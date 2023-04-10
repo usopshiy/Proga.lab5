@@ -3,13 +3,13 @@ package collection;
 import com.google.gson.*;
 import com.google.gson.reflect.*;
 import commands.ExceptionWrapper;
+import data.Location;
 import data.Route;
 import json.*;
-import utils.ConsoleColors;
-import utils.DateConverter;
 
 import java.util.*;
 import java.lang.reflect.Type;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class RouteCollectionHandler {
     private LinkedHashSet<Route> collection;
@@ -61,6 +61,12 @@ public class RouteCollectionHandler {
         uniqueIds.clear();
     }
 
+    public void sort(){
+        ArrayList<Route> list = new ArrayList<>(collection);
+        list.sort(new RouteComparator());
+        collection = new LinkedHashSet<Route>(list);
+    }
+
     public void add(Route route){
         uniqueIds.add(route.getId());
         collection.add(route);
@@ -96,6 +102,26 @@ public class RouteCollectionHandler {
             }
         }
     }
+
+    public void groupCountingByFrom(){
+        HashMap<Location, AtomicInteger> map = new HashMap<>();
+        for (Route route : collection){
+            Location from = route.getFrom();
+            if (map.containsKey(from)){
+                map.get(from).incrementAndGet();
+            } else{
+                map.put(from, new AtomicInteger(1));
+            }
+        }
+        Iterator<Map.Entry<Location, AtomicInteger>> iterator = map.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<Location, AtomicInteger> pair = (Map.Entry<Location, AtomicInteger>) iterator.next();
+            Location location = pair.getKey();
+            int quantity = map.get(location).intValue();
+            System.out.println(location + ": " + Integer.toString(quantity));
+        }
+    }
+
     public LinkedHashSet<Route> getCollection() {
         return collection;
     }

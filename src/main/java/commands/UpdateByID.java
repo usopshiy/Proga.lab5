@@ -22,7 +22,7 @@ public class UpdateByID implements Command{
         if(arg==null){
             throw new CommandException("missing id");
         }
-        UUID id = null;
+        UUID id;
         try{
             id = UUID.fromString(arg);
         }
@@ -41,7 +41,7 @@ public class UpdateByID implements Command{
     }
 
     @Override
-    public void getDescription() {
+    public void outDescription() {
         System.out.println("update_by_id id {element} - updates route with given id");
     }
 }

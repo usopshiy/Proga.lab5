@@ -3,7 +3,6 @@ package commands;
 import collection.RouteCollectionHandler;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
-import utils.DateConverter;
 
 import java.util.UUID;
 
@@ -19,7 +18,7 @@ public class RemoveByID implements Command{
         if(arg==null){
             throw new CommandException("missing id");
         }
-        UUID id = null;
+        UUID id;
         try{
             id = UUID.fromString(arg);
         }
@@ -36,7 +35,7 @@ public class RemoveByID implements Command{
     }
 
     @Override
-    public void getDescription() {
+    public void outDescription() {
         System.out.println("remove_by_id id - removes route with given id from collection");
     }
 }

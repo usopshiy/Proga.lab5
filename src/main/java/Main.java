@@ -1,9 +1,10 @@
 import collection.RouteCollectionHandler;
 import file.FileHandler;
+import io.ConsoleInputHandler;
+import io.InputHandler;
 import io.UserInputHandler;
 
 import java.io.PrintStream;
-import java.util.UUID;
 
 import static utils.ConsoleColors.*;
 
@@ -21,7 +22,6 @@ public class Main {
              |_|  \\_\\  \\____/   \\____/     |_|    |______| |_____/\s
             """+RESET);
         System.out.println("\t    by Egor Dashkevich aka usopshiy");
-
         FileHandler fileHandler = new FileHandler();
         RouteCollectionHandler collectionHandler = new RouteCollectionHandler();
         System.setErr(new PrintStream("file.txt", "UTF-8"));
@@ -29,7 +29,8 @@ public class Main {
             fileHandler.setPath(args[0].trim());
             collectionHandler.deserializeCollection(fileHandler.read());
         }
-        UserInputHandler userInputHandler = new UserInputHandler(collectionHandler, fileHandler);
+        InputHandler inputHandler = new ConsoleInputHandler();
+        UserInputHandler userInputHandler = new UserInputHandler(collectionHandler, fileHandler, inputHandler);
         userInputHandler.consoleMode();
     }
 }

@@ -6,7 +6,6 @@ import utils.DateConverter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.security.spec.ECField;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
@@ -32,7 +31,7 @@ public class FileHandler {
     }
 
     public String read(){
-        String str = "";
+        StringBuilder str = new StringBuilder();
         try {
             if (path==null) throw new EmptyPathException();
             File file = new File(path);
@@ -40,12 +39,12 @@ public class FileHandler {
             if (!file.canRead()) throw new FileWrongPermissionException(" Can't read file");
             Scanner scanner = new Scanner(file).useDelimiter("\n");
             while(scanner.hasNextLine()){
-                str += scanner.nextLine();
+                str.append(scanner.nextLine()).append("\n");
             }
             scanner.close();
         } catch(FileException e){System.err.println(DateConverter.dateToString(java.time.LocalDateTime.now()) +e.getMessage());}
         catch (IOException e){System.err.println(DateConverter.dateToString(java.time.LocalDateTime.now()) +" Can't access file");}
-        return str;
+        return str.toString();
     }
 
     public boolean write(String str){

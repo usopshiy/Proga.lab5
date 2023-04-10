@@ -15,12 +15,12 @@ public class Help implements Command{
     @Override
     public void execute(String arg) throws CommandException, InvalidDataException {
         for(String key : map.keySet()){
-            map.get(key).getDescription();
+            map.get(key).outDescription();
         }
     }
 
     @Override
-    public void getDescription() {
+    public void outDescription() {
         System.out.println("help - shows available commands and their description");
     }
 }

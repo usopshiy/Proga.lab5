@@ -29,6 +29,14 @@ public class Route implements Comparable<Route>{
     public void setId(UUID id){
         this.id = id;
     }
+
+    public Double getDistance(){
+        return distance;
+    }
+
+    public Location getFrom(){
+        return this.from;
+    }
     public boolean validate(){
         return (coordinates!=null && coordinates.validate() && creationDate!=null && from!=null && from.validate() && to!=null && to.validate() && distance!=null && distance>1);
     }

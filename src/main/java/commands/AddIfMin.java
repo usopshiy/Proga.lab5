@@ -1,16 +1,16 @@
 package commands;
 
 import collection.RouteCollectionHandler;
+import data.Route;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
 import io.InputHandler;
-import data.Route;
 
-public class AddIfMax implements Command{
+public class AddIfMin  implements Command{
     private final InputHandler inputHandler;
     private final RouteCollectionHandler collectionHandler;
 
-    public AddIfMax(InputHandler inputHandler, RouteCollectionHandler collectionHandler) {
+    public AddIfMin(InputHandler inputHandler, RouteCollectionHandler collectionHandler) {
         this.inputHandler = inputHandler;
         this.collectionHandler = collectionHandler;
     }
@@ -18,14 +18,14 @@ public class AddIfMax implements Command{
     @Override
     public void execute(String arg) throws CommandException, InvalidDataException {
         Route route = inputHandler.readRoute();
-        boolean isMax = true;
+        boolean isMin = true;
         for(Route routech : collectionHandler.getCollection()){
-            if (route.compareTo(routech) <= 0) {
-                isMax = false;
+            if (route.compareTo(routech) >= 0) {
+                isMin = false;
                 break;
             }
         }
-        if(isMax){
+        if(isMin){
             collectionHandler.add(route);
         }
     }
