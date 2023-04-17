@@ -5,6 +5,7 @@ import io.InputHandler;
 import io.UserInputHandler;
 
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 
 import static utils.ConsoleColors.*;
 
@@ -24,7 +25,7 @@ public class Main {
         System.out.println("\t    by Egor Dashkevich aka usopshiy");
         FileHandler fileHandler = new FileHandler();
         RouteCollectionHandler collectionHandler = new RouteCollectionHandler();
-        System.setErr(new PrintStream("file.txt", "UTF-8"));
+        System.setErr(new PrintStream("file.txt", StandardCharsets.UTF_8));
         if (args.length!=0){
             fileHandler.setPath(args[0].trim());
             collectionHandler.deserializeCollection(fileHandler.read());

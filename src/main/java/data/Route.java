@@ -6,12 +6,12 @@ import java.util.UUID;
 
 public class Route implements Comparable<Route>{
     private UUID id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
-    private String name; //Поле не может быть null, Строка не может быть пустой
-    private Coordinates coordinates; //Поле не может быть null
-    private java.util.Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
-    private Location from; //Поле не может быть null
-    private Location to; //Поле не может быть null
-    private Double distance; //Поле может быть null, Значение поля должно быть больше 1
+    private final String name; //Поле не может быть null, Строка не может быть пустой
+    private final Coordinates coordinates; //Поле не может быть null
+    private final java.util.Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private final Location from; //Поле не может быть null
+    private final Location to; //Поле не может быть null
+    private final Double distance; //Поле может быть null, Значение поля должно быть больше 1
 
     public Route(String name, Coordinates coord, Location from, Location to, Double distance){
         this.id = UUID.randomUUID();
@@ -43,21 +43,23 @@ public class Route implements Comparable<Route>{
 
     @Override
     public String toString() {
-        return "Route{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", coordinates=" + coordinates +
-                ", creationDate=" + creationDate +
-                ", from=" + from +
-                ", to=" + to +
-                ", distance=" + distance +
-                '}';
+        return "id: " + id +
+                ",\n name: " + name +
+                ",\n coordinates: " + coordinates +
+                ",\n creationDate: " + creationDate +
+                ",\n from: " + from +
+                ",\n to: " + to +
+                ",\n distance: " + distance;
     }
 
     @Override
     public int compareTo(Route route) {
-        if(this.distance > route.distance) return 1;
-        if(this.distance.equals(route.distance)) return 0;
+        Double comparable1 = 0.0;
+        Double comparable2 = 0.0;
+        if (this.distance != null){comparable1 = this.distance;}
+        if (route.distance != null){comparable2 = route.distance;}
+        if(comparable1 > comparable2) return 1;
+        if(comparable1.equals(comparable2)) return 0;
         else return  -1;
     }
 }

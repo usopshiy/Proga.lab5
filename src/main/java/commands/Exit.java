@@ -5,7 +5,7 @@ import exceptions.InvalidDataException;
 import io.UserInputHandler;
 
 public class Exit implements Command{
-    private UserInputHandler userInputHandler;
+    private final UserInputHandler userInputHandler;
 
     public Exit(UserInputHandler userInputHandler){
         this.userInputHandler = userInputHandler;

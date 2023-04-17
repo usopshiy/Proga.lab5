@@ -9,7 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.UUID;
 
 public class CollectionDeserializer implements JsonDeserializer<LinkedHashSet<Route>> {
-    private HashSet<UUID> uniqueIds;
+    private final HashSet<UUID> uniqueIds;
 
     public CollectionDeserializer(HashSet<UUID> uniqueIds) {
         this.uniqueIds = uniqueIds;
@@ -21,7 +21,6 @@ public class CollectionDeserializer implements JsonDeserializer<LinkedHashSet<Ro
         JsonArray routes = json.getAsJsonArray();
         int damagedElements = 0;
         for (JsonElement jsonRoute : routes) {
-            Route route = null;
             try {
                 if (jsonRoute.getAsJsonObject().entrySet().isEmpty()) {
                     System.err.print("found empty route object");
@@ -31,7 +30,7 @@ public class CollectionDeserializer implements JsonDeserializer<LinkedHashSet<Ro
                     System.err.print("found route without id");
                     throw new JsonParseException("route has no id");
                 }
-                route = (Route) context.deserialize(jsonRoute, Route.class);
+                Route route = context.deserialize(jsonRoute, Route.class);
                 UUID routeId = route.getId();
 
                 if (uniqueIds.contains(routeId)) {

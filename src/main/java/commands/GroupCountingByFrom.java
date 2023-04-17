@@ -21,6 +21,6 @@ public class GroupCountingByFrom implements Command{
 
     @Override
     public void outDescription() {
-
+        System.out.println("group_counting_by_from - groups elements in collection by \"from\" field and shows it");
     }
 }

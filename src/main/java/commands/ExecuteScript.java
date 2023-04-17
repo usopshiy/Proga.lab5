@@ -6,7 +6,7 @@ import io.UserInputHandler;
 
 public class ExecuteScript implements Command{
 
-    private UserInputHandler userInputHandler;
+    private final UserInputHandler userInputHandler;
 
     public ExecuteScript(UserInputHandler userInputHandler) {
         this.userInputHandler = userInputHandler;
@@ -20,6 +20,6 @@ public class ExecuteScript implements Command{
 
     @Override
     public void outDescription() {
-
+        System.out.println("execute_script file - executes script from file");
     }
 }

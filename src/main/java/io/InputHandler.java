@@ -8,7 +8,7 @@ import exceptions.InvalidDataException;
 import java.util.Scanner;
 
 public abstract class InputHandler {
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public InputHandler(Scanner sc){
         this.scanner = sc;
@@ -130,8 +130,7 @@ public abstract class InputHandler {
         Location from = readLocation();
         Location to = readLocation();
         Double distance = readDistance();
-        Route route = new Route(name, cords, from, to, distance);
-        return route;
+        return new Route(name, cords, from, to, distance);
     }
 
     public CommandWrapper readCommand(){

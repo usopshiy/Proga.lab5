@@ -22,6 +22,6 @@ public class RemoveGreater implements Command {
 
     @Override
     public void outDescription() {
-
+        System.out.println("remove_greater {element} - removes all elements in collection that greater then given");
     }
 }

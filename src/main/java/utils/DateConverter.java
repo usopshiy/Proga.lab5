@@ -34,6 +34,15 @@ public class DateConverter {
             throw new InvalidDateFormatException();
         }
     }
+    public static LocalDateTime parseLocalDateTime(String s) throws InvalidDateFormatException{
+        try{
+        return LocalDateTime.parse(s, localDateTimeFormatter);}
+        catch(java.time.format.DateTimeParseException e){
+            System.out.println(s);
+            throw new InvalidDateFormatException();
+        }
+
+    }
     public static Date parseDate(String s) throws InvalidDateFormatException{
         try{
             return dateFormatter.parse(s);

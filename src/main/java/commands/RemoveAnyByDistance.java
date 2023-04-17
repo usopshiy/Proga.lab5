@@ -14,7 +14,7 @@ public class RemoveAnyByDistance implements Command{
 
     @Override
     public void execute(String arg) throws CommandException, InvalidDataException {
-        Double dist = null;
+        Double dist = (double) 0;
         if(arg != null) {
             try {
                 dist = Double.parseDouble(arg);
@@ -33,6 +33,6 @@ public class RemoveAnyByDistance implements Command{
 
     @Override
     public void outDescription() {
-
+        System.out.println("remove_any_by_distance distance - removes first element with given distance");
     }
 }

@@ -28,7 +28,7 @@ public class RemoveByID implements Command{
         if (collectionHandler.getCollection().isEmpty()) {
             throw new CommandException("collection is empty!");
         }
-        if(!collectionHandler.checkID(id)){
+        if(collectionHandler.checkID(id)){
             throw new CommandException("id is not present in collection!");
         }
         collectionHandler.removeByID(id);

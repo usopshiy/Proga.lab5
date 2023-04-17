@@ -5,41 +5,54 @@ import com.google.gson.reflect.*;
 import commands.ExceptionWrapper;
 import data.Location;
 import data.Route;
+import exceptions.InvalidDateFormatException;
 import json.*;
+import utils.DateConverter;
 
 import java.util.*;
 import java.lang.reflect.Type;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RouteCollectionHandler {
     private LinkedHashSet<Route> collection;
-    private HashSet<UUID> uniqueIds;
+    private final HashSet<UUID> uniqueIds;
     private java.time.LocalDateTime initDate;
 
     public RouteCollectionHandler(){
-        collection = new LinkedHashSet<Route>();
-        uniqueIds = new HashSet<UUID>();
+        collection = new LinkedHashSet<>();
+        uniqueIds = new HashSet<>();
         initDate = java.time.LocalDateTime.now();
     }
-    public boolean deserializeCollection(String json){
-        boolean success = true;
+    public void deserializeCollection(String json){
         try {
             if (json == null || json.equals("")){
-                collection =  new LinkedHashSet<Route>();
+                collection =  new LinkedHashSet<>();
             } else {
+                Pattern pattern = Pattern.compile("\"inittime\": \".{23}\",");
+                Matcher matcher = pattern.matcher(json);
+                if(matcher.find()){
+                    initDate = DateConverter.parseLocalDateTime(json
+                            .substring(matcher.start(), matcher.end())
+                            .substring(13, 36));
+                }
+                pattern = Pattern.compile("\"collection\": ");
+                matcher = pattern.matcher(json);
+                if(matcher.find()){
+                    json = json.trim().substring(matcher.end(), json.length() - 2);
+                }
                 Type collectionType = new TypeToken<LinkedHashSet<Route>>(){}.getType();
                 Gson gson = new GsonBuilder()
                         .registerTypeAdapter(Date.class, new DateDeserializer())
                         .registerTypeAdapter(collectionType, new CollectionDeserializer(uniqueIds))
                         .registerTypeAdapter(java.time.LocalDate.class, new LocalDateDeserializer())
                 .create();
-                collection = gson.fromJson(json.trim(), collectionType);
+                collection = gson.fromJson(json, collectionType);
             }
-        } catch (JsonParseException e){
-            success = false;
+        } catch (JsonParseException | InvalidDateFormatException e){
             ExceptionWrapper.outException(e.getMessage());
         }
-        return success;
 
     }
 
@@ -53,6 +66,8 @@ public class RouteCollectionHandler {
                 .setPrettyPrinting()
                 .create();
         String json = gson.toJson(collection);
+        json = "{\"inittime\": \"" + DateConverter.dateToString(initDate) +
+                "\",\n\t\"collection\": " + json + "\n}";
         return json;
     }
 
@@ -64,23 +79,23 @@ public class RouteCollectionHandler {
     public void sort(){
         ArrayList<Route> list = new ArrayList<>(collection);
         list.sort(new RouteComparator());
-        collection = new LinkedHashSet<Route>(list);
+        collection = new LinkedHashSet<>(list);
     }
 
     public void add(Route route){
         uniqueIds.add(route.getId());
         collection.add(route);
         System.out.print("added element: ");
-        System.out.println(route.toString());
+        System.out.println(route);
     }
 
     public boolean checkID(UUID id){
         for(Route route : collection){
             if(route.getId().equals(id)){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public void removeByID(UUID id){
@@ -88,7 +103,7 @@ public class RouteCollectionHandler {
             if(route.getId().equals(id)){
                 collection.remove(route);
                 uniqueIds.remove(id);
-                System.out.println("successfully removed route with id: "+ id);
+                System.out.println("successfully removed route with id: " + id);
             }
         }
     }
@@ -113,15 +128,16 @@ public class RouteCollectionHandler {
                 map.put(from, new AtomicInteger(1));
             }
         }
-        Iterator<Map.Entry<Location, AtomicInteger>> iterator = map.entrySet().iterator();
-        while(iterator.hasNext()){
-            Map.Entry<Location, AtomicInteger> pair = (Map.Entry<Location, AtomicInteger>) iterator.next();
+        for (Map.Entry<Location, AtomicInteger> pair : map.entrySet()) {
             Location location = pair.getKey();
             int quantity = map.get(location).intValue();
-            System.out.println(location + ": " + Integer.toString(quantity));
+            System.out.println(location + ": " + quantity);
         }
     }
 
+    public void info(){
+        System.out.println("Collection type: LinkedHashSet of Routes\n Creation date: " + DateConverter.dateToString(initDate) + "\nElements in collection: " + collection.size());
+    }
     public LinkedHashSet<Route> getCollection() {
         return collection;
     }

@@ -9,14 +9,14 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public class UserInputHandler {
-    private HashMap<String, Command> map;
-    private RouteCollectionHandler collectionHandler;
-    private InputHandler currentHandler;
-    private FileHandler fileHandler;
+    private final HashMap<String, Command> map;
+    private final RouteCollectionHandler collectionHandler;
+    private final InputHandler currentHandler;
+    private final FileHandler fileHandler;
     private String currentScriptFilePath = "";
     private boolean isRunning = false;
 
-    private static Stack<String> scriptStack = new Stack<>();
+    private static final Stack<String> scriptStack = new Stack<>();
 
     public UserInputHandler(RouteCollectionHandler collectionHandler, FileHandler fileHandler, InputHandler inputHandler){
         this.collectionHandler = collectionHandler;
@@ -25,6 +25,8 @@ public class UserInputHandler {
 
         map = new HashMap<>();
         addCommand("help", new Help(this.map));
+        addCommand("info", new Info(this.collectionHandler));
+        addCommand("show", new Show(this.collectionHandler));
         addCommand("add", new Add(this.collectionHandler, currentHandler));
         addCommand("update_by_id", new UpdateByID(this.collectionHandler, this.currentHandler));
         addCommand("remove_by_id", new RemoveByID(this.collectionHandler));
@@ -37,6 +39,7 @@ public class UserInputHandler {
         addCommand("remove_any_by_distance", new RemoveAnyByDistance(this.collectionHandler));
         addCommand("group_counting_by_from", new GroupCountingByFrom(this.collectionHandler));
         addCommand("execute_script", new ExecuteScript(this));
+        addCommand("print_ascending", new PrintAscending(this.collectionHandler));
     }
 
     public void addCommand(String key, Command command){

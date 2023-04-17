@@ -24,6 +24,6 @@ public class Save implements Command{
 
     @Override
     public void outDescription() {
-
+        System.out.println("save file - saves collection in file");
     }
 }

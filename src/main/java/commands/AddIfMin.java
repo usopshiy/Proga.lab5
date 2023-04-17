@@ -32,6 +32,6 @@ public class AddIfMin  implements Command{
 
     @Override
     public void outDescription() {
-
+        System.out.println("add_if_min {element} - adds new element in collection if it's the smallest one");
     }
 }

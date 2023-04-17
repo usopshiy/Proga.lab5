@@ -32,6 +32,6 @@ public class AddIfMax implements Command{
 
     @Override
     public void outDescription() {
-
+        System.out.println("add_if_max {element} - adds new element in collection if it's greater then all others");
     }
 }
