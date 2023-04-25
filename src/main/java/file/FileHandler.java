@@ -9,19 +9,40 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
+/**
+ * class for dealing with files given by user
+ */
 public class FileHandler {
     private  String path;
+
+    /**
+     * constructor
+     * @param pth
+     */
     public FileHandler(String pth){
         this.path = pth;
     }
 
+    /**
+     * base constructor
+     */
     public FileHandler(){
         this.path = null;
     }
+
+    /**
+     * sets path to file
+     * @param pth
+     */
     public  void setPath(String pth){
         this.path = pth;
     }
 
+    /**
+     * Method for creating file
+     * @param file
+     * @throws FileException
+     */
     public void create(File file) throws FileException{
         try{
             file.createNewFile();
@@ -30,6 +51,10 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Method for reading file
+     * @return String
+     */
     public String read(){
         StringBuilder str = new StringBuilder();
         try {
@@ -47,6 +72,11 @@ public class FileHandler {
         return str.toString();
     }
 
+    /**
+     * method for writing in file, gives result of operation via return
+     * @param str
+     * @return boolean
+     */
     public boolean write(String str){
         try{
             if(path == null) throw new EmptyPathException();

@@ -1,46 +1,70 @@
-[
+{"inittime": "2023-04-15 12:30:00:000",
+	"collection": [
   {
-    "id": "90612e3c-b810-11ed-afa1-0242ac120002",
-    "name": "Egor",
+    "id": "e0a8d18f-8393-4aa9-8f3b-a6cb36badf3c",
+    "name": "asd",
     "coordinates": {
-      "x": 20.0,
-      "y": 7
+      "x": 123.0,
+      "y": 12
     },
-    "creationDate": "2022-01-28",
+    "creationDate": "2023-04-10",
     "from": {
-      "x": 20,
-      "y": 20.0,
-      "z": 5,
-      "name": "abc"
+      "x": 11,
+      "y": 2.0,
+      "z": 3,
+      "name": "qq"
     },
     "to": {
-      "x": 20,
-      "y": 20.0,
-      "z": 55,
-      "name": "aabbc"
+      "x": 3,
+      "y": 112.0,
+      "z": 12,
+      "name": "qw"
     },
-    "distance": 30.0
+    "distance": 33.0
   },
   {
-    "id": "90613134-b810-11ed-afa1-0242ac120002",
-    "name": "Egor",
+    "id": "f24dc819-31a7-4078-b546-b15495005d2c",
+    "name": "asd",
     "coordinates": {
-      "x": 20.0,
-      "y": 7
+      "x": 111.0,
+      "y": 21
     },
-    "creationDate": "2022-01-28",
+    "creationDate": "2023-04-10",
     "from": {
-      "x": 20,
-      "y": 20.0,
-      "z": 5,
-      "name": "abc"
+      "x": 11,
+      "y": 3.0,
+      "z": 143,
+      "name": "ss"
     },
     "to": {
-      "x": 20,
-      "y": 20.0,
-      "z": 55,
-      "name": "aabbc"
+      "x": 33,
+      "y": 112.0,
+      "z": 10,
+      "name": "sq"
     },
-    "distance": 30.0
+    "distance": 15.0
+  },
+  {
+    "id": "5b3d0902-548f-4d96-84ff-2ca7930f8904",
+    "name": "asd12",
+    "coordinates": {
+      "x": 111.0,
+      "y": 21
+    },
+    "creationDate": "2023-04-10",
+    "from": {
+      "x": 11,
+      "y": 3.0,
+      "z": 143,
+      "name": "ss"
+    },
+    "to": {
+      "x": 33,
+      "y": 112.0,
+      "z": 10,
+      "name": "sq"
+    },
+    "distance": 152.0
   }
 ]
+}

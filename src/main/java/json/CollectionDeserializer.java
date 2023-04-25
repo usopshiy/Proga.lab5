@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.UUID;
 
+/**
+ * Custom deserializer for LinkedHashSet of routes for gson library
+ */
 public class CollectionDeserializer implements JsonDeserializer<LinkedHashSet<Route>> {
     private final HashSet<UUID> uniqueIds;
 

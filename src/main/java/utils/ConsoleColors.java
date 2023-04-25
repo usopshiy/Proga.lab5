@@ -1,5 +1,8 @@
 package utils;
 
+/**
+ * class for customizing console outputs
+ */
 public class ConsoleColors {
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset

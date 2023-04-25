@@ -8,6 +8,9 @@ import exceptions.*;
 import java.util.HashMap;
 import java.util.Stack;
 
+/**
+ * class that runs programm
+ */
 public class UserInputHandler {
     private final HashMap<String, Command> map;
     private final RouteCollectionHandler collectionHandler;
@@ -18,6 +21,12 @@ public class UserInputHandler {
 
     private static final Stack<String> scriptStack = new Stack<>();
 
+    /**
+     * constructor, sets fields and standard commands
+     * @param collectionHandler
+     * @param fileHandler
+     * @param inputHandler
+     */
     public UserInputHandler(RouteCollectionHandler collectionHandler, FileHandler fileHandler, InputHandler inputHandler){
         this.collectionHandler = collectionHandler;
         this.fileHandler = fileHandler;
@@ -42,10 +51,20 @@ public class UserInputHandler {
         addCommand("print_ascending", new PrintAscending(this.collectionHandler));
     }
 
+    /**
+     * adds command to command list
+     * @param key
+     * @param command
+     */
     public void addCommand(String key, Command command){
         map.put(key, command);
     }
 
+    /**
+     * method for executing commands
+     * @param key
+     * @param arg
+     */
     public void runCommand(String key, String arg) {
         try {
             if (!map.containsKey(key)) {
@@ -57,10 +76,18 @@ public class UserInputHandler {
         }
     }
 
+    /**
+     * exits program without saving collection
+     */
     public void exit(){
         isRunning = false;
     }
 
+    /**
+     * method for executing scripts
+     * @param arg
+     * @throws RecursiveScriptExecption
+     */
     public void executeScript(String arg) throws RecursiveScriptExecption {
         if (scriptStack.contains(currentScriptFilePath)) throw new RecursiveScriptExecption();
         scriptStack.push(currentScriptFilePath);
@@ -70,6 +97,9 @@ public class UserInputHandler {
         System.out.println("successfully executed script " + arg);
     }
 
+    /**
+     * method for running program driven by user inputs
+     */
     public  void consoleMode(){
         isRunning = true;
         while(isRunning){
@@ -79,7 +109,11 @@ public class UserInputHandler {
             }
         }
 
-        public void scriptMode(String path){
+    /**
+     * method for running program driven by inputs from file
+     * @param path
+     */
+    public void scriptMode(String path){
         currentScriptFilePath = path;
         isRunning = true;
         while(isRunning && currentHandler.getScanner().hasNextLine()){

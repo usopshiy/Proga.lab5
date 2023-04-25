@@ -15,16 +15,27 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * class for dealing with collection
+ */
 public class RouteCollectionHandler {
     private LinkedHashSet<Route> collection;
     private final HashSet<UUID> uniqueIds;
     private java.time.LocalDateTime initDate;
 
+    /**
+     * constructor for class
+     */
     public RouteCollectionHandler(){
         collection = new LinkedHashSet<>();
         uniqueIds = new HashSet<>();
         initDate = java.time.LocalDateTime.now();
     }
+
+    /**
+     * method for getting collection from json file
+     * @param json
+     */
     public void deserializeCollection(String json){
         try {
             if (json == null || json.equals("")){
@@ -56,6 +67,10 @@ public class RouteCollectionHandler {
 
     }
 
+    /**
+     * method for serializing collection into json
+     * @return String
+     */
     public String serializeCollection(){
         if(collection == null || collection.isEmpty()){
             return "";
@@ -71,17 +86,27 @@ public class RouteCollectionHandler {
         return json;
     }
 
+    /**
+     * clears collection
+     */
     public void clear(){
         collection.clear();
         uniqueIds.clear();
     }
 
+    /**
+     * sorts collection via RouteComparator
+     */
     public void sort(){
         ArrayList<Route> list = new ArrayList<>(collection);
         list.sort(new RouteComparator());
         collection = new LinkedHashSet<>(list);
     }
 
+    /**
+     * adds element to collection
+     * @param route
+     */
     public void add(Route route){
         uniqueIds.add(route.getId());
         collection.add(route);
@@ -89,6 +114,11 @@ public class RouteCollectionHandler {
         System.out.println(route);
     }
 
+    /**
+     * method for checking if gie ID is present in collection
+     * @param id
+     * @return boolean
+     */
     public boolean checkID(UUID id){
         for(Route route : collection){
             if(route.getId().equals(id)){
@@ -98,6 +128,10 @@ public class RouteCollectionHandler {
         return true;
     }
 
+    /**
+     * removes object from collection with given id
+     * @param id
+     */
     public void removeByID(UUID id){
         for(Route route : collection){
             if(route.getId().equals(id)){
@@ -108,6 +142,11 @@ public class RouteCollectionHandler {
         }
     }
 
+    /**
+     * updates object with given id in collection with fields of given object
+     * @param id
+     * @param route
+     */
     public void updateByID(UUID id, Route route){
         for(Route cRoute : collection){
             if(cRoute.getId().equals(id)){
@@ -118,6 +157,9 @@ public class RouteCollectionHandler {
         }
     }
 
+    /**
+     * Groups objects by field "from" and outputs it into standard out
+     */
     public void groupCountingByFrom(){
         HashMap<Location, AtomicInteger> map = new HashMap<>();
         for (Route route : collection){
@@ -135,9 +177,17 @@ public class RouteCollectionHandler {
         }
     }
 
+    /**
+     * gives info about collection
+     */
     public void info(){
         System.out.println("Collection type: LinkedHashSet of Routes\n Creation date: " + DateConverter.dateToString(initDate) + "\nElements in collection: " + collection.size());
     }
+
+    /**
+     * getter for collection
+     * @return LinkedHashSet
+     */
     public LinkedHashSet<Route> getCollection() {
         return collection;
     }

@@ -1,5 +1,8 @@
 package io;
 
+/**
+ * wrapper for commands for easier usage of user input
+ */
 public class CommandWrapper {
     private final String command;
 

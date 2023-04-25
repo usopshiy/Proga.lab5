@@ -6,6 +6,9 @@ import com.google.gson.*;
 
 import exceptions.InvalidDateFormatException;
 
+/**
+ * Custom deserializer for LocalDate for gson library
+ */
 public class LocalDateDeserializer implements JsonDeserializer<LocalDate> {
     @Override
     public LocalDate deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {

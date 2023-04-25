@@ -9,6 +9,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import exceptions.InvalidDateFormatException;
+
+/**
+ * utility class for converting Date and Time
+ */
 public class DateConverter {
     private static final DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
     private static final  DateTimeFormatter localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

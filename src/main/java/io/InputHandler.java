@@ -7,6 +7,9 @@ import exceptions.InvalidDataException;
 
 import java.util.Scanner;
 
+/**
+ * abstract class for dealing with inputs
+ */
 public abstract class InputHandler {
     private final Scanner scanner;
 

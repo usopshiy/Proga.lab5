@@ -6,6 +6,9 @@ import data.Route;
 
 import java.util.Scanner;
 
+/**
+ * Input Handler for user input in console
+ */
 public class ConsoleInputHandler extends InputHandler {
     public ConsoleInputHandler(){
         super(new Scanner(System.in));

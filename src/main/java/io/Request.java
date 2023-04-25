@@ -3,6 +3,10 @@ package io;
 import commands.ExceptionWrapper;
 import exceptions.InvalidDataException;
 
+/**
+ * wrapper class for user input requests
+ * @param <T>
+ */
 public class Request<T> {
     private T respond;
 
