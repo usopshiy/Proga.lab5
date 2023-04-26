@@ -19,11 +19,19 @@ public class UpdateByID implements Command{
 
     @Override
     public void execute(String arg) throws CommandException, InvalidDataException {
+        //TODO: deal with duplicate code (check RemoveByID)
         if(arg==null){
             throw new CommandException("missing id");
         }
         UUID id;
         try{
+            /*
+            since parser in UUID already validates string
+            this if should work fine for denying auto-extension in parsing
+             */
+            if (arg.length() != 36){
+                throw new IllegalArgumentException();
+            }
             id = UUID.fromString(arg);
         }
         catch(IllegalArgumentException e){

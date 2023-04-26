@@ -20,6 +20,9 @@ public class RemoveByID implements Command{
         }
         UUID id;
         try{
+            if (arg.length() != 36){
+                throw new IllegalArgumentException();
+            }
             id = UUID.fromString(arg);
         }
         catch(IllegalArgumentException e){

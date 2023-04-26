@@ -40,7 +40,8 @@ public class DateConverter {
     }
     public static LocalDateTime parseLocalDateTime(String s) throws InvalidDateFormatException{
         try{
-        return LocalDateTime.parse(s, localDateTimeFormatter);}
+            return LocalDateTime.parse(s, localDateTimeFormatter);
+        }
         catch(java.time.format.DateTimeParseException e){
             System.out.println(s);
             throw new InvalidDateFormatException();
