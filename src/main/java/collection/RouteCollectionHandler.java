@@ -115,7 +115,7 @@ public class RouteCollectionHandler {
     }
 
     /**
-     * method for checking if gie ID is present in collection
+     * method for checking if given ID is present in collection
      * @param id
      * @return boolean
      */
@@ -128,6 +128,23 @@ public class RouteCollectionHandler {
         return true;
     }
 
+    /**
+     * method for validating input id string
+     * @param id
+     * @return boolean
+     */
+    public boolean validateID(String id){
+        if (id == null || id.length() != 36){
+            return false;
+        }
+        try {
+           UUID uuid = UUID.fromString(id);
+        }
+        catch (IllegalArgumentException e){
+            return false;
+        }
+        return true;
+    }
     /**
      * removes object from collection with given id
      * @param id

@@ -19,33 +19,19 @@ public class UpdateByID implements Command{
 
     @Override
     public void execute(String arg) throws CommandException, InvalidDataException {
-        //TODO: deal with duplicate code (check RemoveByID)
-        if(arg==null){
-            throw new CommandException("missing id");
-        }
-        UUID id;
-        try{
-            /*
-            since parser in UUID already validates string
-            this if should work fine for denying auto-extension in parsing
-             */
-            if (arg.length() != 36){
-                throw new IllegalArgumentException();
+        if (collectionHandler.validateID(arg)) {
+            UUID id = UUID.fromString(arg);
+            if (collectionHandler.getCollection().isEmpty()) {
+                throw new CommandException("collection is empty!");
             }
-            id = UUID.fromString(arg);
+            if (collectionHandler.checkID(id)) {
+                throw new CommandException("id is not present in collection!");
+            }
+            Route route = inputHandler.readRoute();
+            route.setId(id);
+            collectionHandler.updateByID(id, route);
         }
-        catch(IllegalArgumentException e){
-            throw new InvalidDataException("invalid id format");
-        }
-        if (collectionHandler.getCollection().isEmpty()) {
-            throw new CommandException("collection is empty!");
-        }
-        if(collectionHandler.checkID(id)){
-            throw new CommandException("id is not present in collection!");
-        }
-        Route route = inputHandler.readRoute();
-        route.setId(id);
-        collectionHandler.updateByID(id, route);
+        else throw new InvalidDataException("Invalid id");
     }
 
     @Override

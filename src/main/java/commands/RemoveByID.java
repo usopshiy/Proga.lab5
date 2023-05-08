@@ -15,19 +15,10 @@ public class RemoveByID implements Command{
 
     @Override
     public void execute(String arg) throws CommandException, InvalidDataException {
-        if(arg==null){
-            throw new CommandException("missing id");
+        if (!collectionHandler.validateID(arg)){
+            throw new InvalidDataException("Invalid id");
         }
-        UUID id;
-        try{
-            if (arg.length() != 36){
-                throw new IllegalArgumentException();
-            }
-            id = UUID.fromString(arg);
-        }
-        catch(IllegalArgumentException e){
-            throw new InvalidDataException("invalid id format");
-        }
+        UUID id = UUID.fromString(arg); //Exception-save cause checks in validate
         if (collectionHandler.getCollection().isEmpty()) {
             throw new CommandException("collection is empty!");
         }
