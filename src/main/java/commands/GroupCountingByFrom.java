@@ -3,7 +3,7 @@ package commands;
 import collection.RouteCollectionHandler;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
-
+import static utils.ConsoleColors.*;
 public class GroupCountingByFrom implements Command{
     private final RouteCollectionHandler collectionHandler;
 
@@ -21,6 +21,7 @@ public class GroupCountingByFrom implements Command{
 
     @Override
     public void outDescription() {
-        System.out.println("group_counting_by_from - groups elements in collection by \"from\" field and shows it");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "group_counting_by_from ")  +
+                        "- " + setColor(BLUE_BRIGHT, "group_counting_by_from - groups elements in collection by \"from\" field and shows it"));
     }
 }

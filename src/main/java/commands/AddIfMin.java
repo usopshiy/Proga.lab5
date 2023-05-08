@@ -6,6 +6,8 @@ import exceptions.CommandException;
 import exceptions.InvalidDataException;
 import io.InputHandler;
 
+import static utils.ConsoleColors.*;
+
 public class AddIfMin  implements Command{
     private final InputHandler inputHandler;
     private final RouteCollectionHandler collectionHandler;
@@ -32,6 +34,7 @@ public class AddIfMin  implements Command{
 
     @Override
     public void outDescription() {
-        System.out.println("add_if_min {element} - adds new element in collection if it's the smallest one");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "add_if_min ") + setColor(PURPLE_BRIGHT, "{element} ") +
+                "- " + setColor(BLUE_BRIGHT, "adds new element in collection if it's the smallest one"));
     }
 }

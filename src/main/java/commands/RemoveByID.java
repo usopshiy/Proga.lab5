@@ -3,7 +3,7 @@ package commands;
 import collection.RouteCollectionHandler;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
-
+import static utils.ConsoleColors.*;
 import java.util.UUID;
 
 public class RemoveByID implements Command{
@@ -30,6 +30,7 @@ public class RemoveByID implements Command{
 
     @Override
     public void outDescription() {
-        System.out.println("remove_by_id id - removes route with given id from collection");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "remove_by_id ") + setColor(PURPLE_BRIGHT, "id ") +
+                "- " + setColor(BLUE_BRIGHT, "removes route with given id from collection"));
     }
 }

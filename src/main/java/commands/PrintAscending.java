@@ -4,7 +4,7 @@ import collection.RouteCollectionHandler;
 import data.Route;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
-
+import static utils.ConsoleColors.*;
 public class PrintAscending implements Command{
     private final RouteCollectionHandler collectionHandler;
 
@@ -24,6 +24,7 @@ public class PrintAscending implements Command{
     }
     @Override
     public void outDescription() {
-        System.out.println("print_ascending - shows collection elements in increasing order");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "print_ascending ")  +
+                "- " + setColor(BLUE_BRIGHT, "shows elements of collection in ascending order"));
     }
 }

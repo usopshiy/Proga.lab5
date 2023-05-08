@@ -3,7 +3,7 @@ package commands;
 import collection.RouteCollectionHandler;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
-
+import static utils.ConsoleColors.*;
 public class Info implements Command{
     private final RouteCollectionHandler collectionHandler;
 
@@ -18,6 +18,7 @@ public class Info implements Command{
 
     @Override
     public void outDescription() {
-        System.out.println("info - shows info about collection");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "info ")  +
+                "- " + setColor(BLUE_BRIGHT, "shows info about the collection"));
     }
 }

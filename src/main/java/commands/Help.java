@@ -4,7 +4,7 @@ import exceptions.CommandException;
 import exceptions.InvalidDataException;
 
 import java.util.HashMap;
-
+import static utils.ConsoleColors.*;
 public class Help implements Command{
     private final HashMap<String, Command> map;
 
@@ -21,6 +21,7 @@ public class Help implements Command{
 
     @Override
     public void outDescription() {
-        System.out.println("help - shows available commands and their description");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "help ")  +
+                "- " + setColor(BLUE_BRIGHT, "shows available commands and their description"));
     }
 }

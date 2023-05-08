@@ -3,7 +3,7 @@ package commands;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
 import io.UserInputHandler;
-
+import static utils.ConsoleColors.*;
 public class ExecuteScript implements Command{
 
     private final UserInputHandler userInputHandler;
@@ -20,6 +20,7 @@ public class ExecuteScript implements Command{
 
     @Override
     public void outDescription() {
-        System.out.println("execute_script file - executes script from file");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "execute_script ") + setColor(PURPLE_BRIGHT, "file ") +
+                "- " + setColor(BLUE_BRIGHT, "execute script from file"));
     }
 }

@@ -4,7 +4,7 @@ import collection.RouteCollectionHandler;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
 import file.FileHandler;
-
+import static utils.ConsoleColors.*;
 
 public class Save implements Command{
     private final FileHandler fileHandler;
@@ -24,6 +24,7 @@ public class Save implements Command{
 
     @Override
     public void outDescription() {
-        System.out.println("save file - saves collection in file");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "save ")  + setColor(PURPLE_BRIGHT, "file") +
+                "- " + setColor(BLUE_BRIGHT, "saves collection into file"));
     }
 }

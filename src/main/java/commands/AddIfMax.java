@@ -6,6 +6,8 @@ import exceptions.InvalidDataException;
 import io.InputHandler;
 import data.Route;
 
+import static utils.ConsoleColors.*;
+
 public class AddIfMax implements Command{
     private final InputHandler inputHandler;
     private final RouteCollectionHandler collectionHandler;
@@ -32,6 +34,7 @@ public class AddIfMax implements Command{
 
     @Override
     public void outDescription() {
-        System.out.println("add_if_max {element} - adds new element in collection if it's greater then all others");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "add_if_max ") + setColor(PURPLE_BRIGHT, "{element} ") +
+                "- " + setColor(BLUE_BRIGHT, "adds new element in collection if it's greater then all others" ));
     }
 }

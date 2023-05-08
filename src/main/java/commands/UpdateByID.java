@@ -5,7 +5,7 @@ import data.Route;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
 import io.InputHandler;
-
+import static utils.ConsoleColors.*;
 import java.util.UUID;
 
 public class UpdateByID implements Command{
@@ -36,6 +36,7 @@ public class UpdateByID implements Command{
 
     @Override
     public void outDescription() {
-        System.out.println("update_by_id id {element} - updates route with given id");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "update_by_id ") + setColor(PURPLE_BRIGHT, "{element} ") + "- " +
+                setColor(BLUE_BRIGHT, "updates route with given id"));
     }
 }

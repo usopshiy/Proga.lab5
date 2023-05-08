@@ -3,7 +3,7 @@ package commands;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
 import io.UserInputHandler;
-
+import static utils.ConsoleColors.*;
 public class Exit implements Command{
     private final UserInputHandler userInputHandler;
 
@@ -18,6 +18,7 @@ public class Exit implements Command{
 
     @Override
     public void outDescription() {
-        System.out.println("exit - exits program");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "exit ") +
+                "- " + setColor(BLUE_BRIGHT, "exits program"));
     }
 }

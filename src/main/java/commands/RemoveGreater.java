@@ -5,7 +5,7 @@ import data.Route;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
 import io.InputHandler;
-
+import static utils.ConsoleColors.*;
 public class RemoveGreater implements Command {
     private final InputHandler inputHandler;
     private final RouteCollectionHandler collectionHandler;
@@ -22,6 +22,7 @@ public class RemoveGreater implements Command {
 
     @Override
     public void outDescription() {
-        System.out.println("remove_greater {element} - removes all elements in collection that greater then given");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "remove_greater  ") + setColor(PURPLE_BRIGHT, "{element} ") + "- " +
+                setColor(BLUE_BRIGHT, "removes all elements in collection that greater then one that was given"));
     }
 }

@@ -4,6 +4,7 @@ import collection.RouteCollectionHandler;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
 import io.InputHandler;
+import static  utils.ConsoleColors.*;
 
 public class Add implements  Command {
     private final RouteCollectionHandler collectionHandler;
@@ -20,6 +21,7 @@ public class Add implements  Command {
 
     @Override
     public void outDescription() {
-        System.out.println("add {element} - adds new route in collection");
+        System.out.println(setColor(GREEN_BOLD_BRIGHT, "add ") + setColor(PURPLE_BRIGHT, "{element} ") + "- " +
+                setColor(BLUE_BRIGHT, "adds new route in collection"));
     }
 }
