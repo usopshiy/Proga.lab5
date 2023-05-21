@@ -22,12 +22,12 @@ public class ConsoleInputHandler extends InputHandler {
 
     @Override
     public Coordinates readCoordinates(){
-        return new Request<>("enter coordinates data:", super::readCoordinates).getRespond();
+        return new Request<>("enter coordinates data:\n", super::readCoordinates).getRespond();
     }
 
     @Override
     public Location readLocation(){
-        return  new Request<>("enter location data:", super::readLocation).getRespond();
+        return  new Request<>("enter location data:\n", super::readLocation).getRespond();
     }
 
     @Override
